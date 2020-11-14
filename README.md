@@ -2,13 +2,13 @@
 
 ## Code Description
 
-* `/test` endpoint redirects to `/forbidden` (using `redirect` value in `getStaticProps` in this only scenario);
+* `/test` endpoint redirects to `/forbidden` (using `redirect` value in `getStaticProps`);
 * `fallback: true` is set;
 * page revalidation is enabled (every second).
 
 ## Steps To Reproduce
 
-### TypeError: argument entity must be string, Buffer, or fs.Stats
+### `TypeError: argument entity must be string, Buffer, or fs.Stats`
 
 1. Run `yarn build`.
 2. Run `yarn start`.
@@ -21,7 +21,7 @@ You are redirected to `http://localhost:3000/forbidden`
 
 #### Actual behavior
 
-Internal server error is shown in UI (500) and the following is in the application logs:
+Internal server error is shown in UI (`500`) and the following is in the application logs:
 
 ```
 TypeError: argument entity must be string, Buffer, or fs.Stats
@@ -37,13 +37,17 @@ TypeError: argument entity must be string, Buffer, or fs.Stats
     at async Server.handleRequest (/home/gurisko/nextjs-redirect-bug-hunt/node_modules/next/dist/next-server/server/next-server.js:33:319)
 ```
 
-### Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+### `Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client`
 
 1. Repeat the steps from the `TypeError: argument entity must be string, Buffer, or fs.Stats`.
 2. Stop the nextjs application.
 3. Start the application again by running `yarn start`.
-4. Go to `http://localhost:3000/test` (only `[objectObject]` is returned).
+4. Go to `http://localhost:3000/test` (only `[object Object]` is returned).
 5. Go to `http://localhost:3000/test`.
+
+#### Expected behavior
+
+You are redirected to `http://localhost:3000/forbidden`
 
 #### Actual Behavior
 
