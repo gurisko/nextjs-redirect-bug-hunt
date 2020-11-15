@@ -1,5 +1,7 @@
 # nextjs-redirect-bug-hunt
 
+**NOTE**: The bug was fixed already [[PR](https://github.com/vercel/next.js/pull/18806)].
+
 ## Code Description
 
 * `/test` endpoint redirects to `/forbidden` (using `redirect` value in `getStaticProps`);
